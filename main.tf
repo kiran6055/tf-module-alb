@@ -1,23 +1,12 @@
-#creating subnetgroup for DB
-resource "aws_docdb_subnet_group" "default" {
-  name       = "${var.env}-docdb-subnet-groups"
-  subnet_ids = var.subnet_ids
-
-  tags = merge(
-    local.common_tags,
-    { Name = "${var.env}-docdb-subnet-groups" }
-  )
-}
-
-# creating security group for Rabbitmq
-resource "aws_security_group" "rabbitmq" {
-  name        = "${var.env}-rabbitmq-security-group"
-  description = "${var.env}-rabbitmq-security-group"
+# creating security group for alb
+resource "aws_security_group" "main" {
+  name        = "${var.env}-alb-${var.subnets_name}-security-group"
+  description = "${var.env}-alb-${var.subnets_name}-security-group"
   vpc_id      = var.vpc_id
   ingress {
-    description = "rabbitmq"
-    from_port   = 5672
-    to_port     = 5672
+    description = "http"
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = var.allow_cidr
   }
@@ -29,7 +18,7 @@ resource "aws_security_group" "rabbitmq" {
   }
   tags = merge(
     local.common_tags,
-    { Name = "${var.env}-rabbitmq-security-group" }
+    { Name = "${var.env}-alb-${var.subnets_name}-security-group" }
   )
 }
 
