@@ -3,5 +3,5 @@ output "dns_name" {
 }
 
 output "listner" {
-  value = aws_lb_listener.backend.*arn[0]
+  value = aws_lb_listener.backend.*.arn[0]
 }
