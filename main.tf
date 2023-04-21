@@ -37,7 +37,7 @@ resource "aws_lb" "main" {
   )
 }
 
-# creating a listner to load balancer
+# creating a listener to load balancer
 
 
 resource "aws_lb_listener" "backend" {
