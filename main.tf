@@ -37,8 +37,7 @@ resource "aws_lb" "main" {
   )
 }
 
-# creating a listener to load balancer
-
+# creating a listener to load balancer for backend
 
 resource "aws_lb_listener" "backend" {
   count             = var.internal ? 1 : 0
@@ -56,3 +55,4 @@ resource "aws_lb_listener" "backend" {
     }
   }
 }
+

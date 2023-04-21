@@ -5,3 +5,7 @@ output "dns_name" {
 output "listener" {
   value = try(aws_lb_listener.backend.*.arn[0], null)
 }
+
+output "" {
+  value = aws_lb.main.arn
+}
