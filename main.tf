@@ -54,6 +54,7 @@ resource "aws_lb_listener" "backend" {
   port              = "80"
   protocol          = "HTTP"
 
+
   default_action {
     type = "fixed-response"
 
@@ -65,9 +66,9 @@ resource "aws_lb_listener" "backend" {
   }
 }
 
-# creating route 53 record
+# creating route 53 record for public load balancer with domain wichi is required for security manager certificate manager
 resource "aws_route53_record" "public_lb" {
-  count   = var.internal ? 1 : 0
+  count   = var.internal ? 0 : 1
   zone_id = "Z09836283CE71XJOYIM7M"
   name    = var.dns_domain
   type    = "CNAME"
