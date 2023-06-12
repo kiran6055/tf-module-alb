@@ -69,7 +69,7 @@ resource "aws_lb_listener" "backend" {
 # creating route 53 record for public load balancer with domain wichi is required for security manager certificate manager
 resource "aws_route53_record" "public_lb" {
   count   = var.internal ? 0 : 1
-  zone_id = "Z09836283CE71XJOYIM7M"
+  zone_id = "Z07596741WQU2SC2HOJ8D"
   name    = var.dns_domain
   type    = "CNAME"
   ttl     = 30
